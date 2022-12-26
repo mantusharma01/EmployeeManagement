@@ -8,6 +8,11 @@ namespace EmployeeManagement.CQRS.Handlers
     {
         private readonly sql6585767Context _context;
 
+        public AddNewEmpHandler(sql6585767Context context)
+        {
+            _context = context;
+        }
+
         public async Task<Unit> Handle(AddNewEmpCommand request, CancellationToken cancellationToken)
         {
             await _context.AddAsync(request.Employee);

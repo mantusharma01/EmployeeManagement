@@ -15,58 +15,18 @@ namespace EmployeeManagement.Controllers
     public class EmployeesController : ControllerBase
     {
         private readonly ISender _sender;
-        public EmployeesController( ISender sender)
+        public EmployeesController(ISender sender)
         {
-            _sender=sender;
+            _sender = sender;
         }
 
-        // GET: api/Employees
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
-        {
-            return await _context.Employees.ToListAsync();
-        }
 
-        // GET: api/Employees/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Employee>> GetEmployee(int id)
-        {
-            var employee = await _context.Employees.FindAsync(id);
-
-            if (employee == null)
-            {
-                return NotFound();
-            }
-
-            return employee;
-        }
 
         [HttpGet("{id}")]
         public async Task<ActionResult> GetEmployee(int id)
-            {
+        {
             var Employees = await _sender.Send(new GetEmpsByIdQuery(id));
             return Ok(Employees);
-            }
-
-            _context.Entry(employee).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EmployeeExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
         }
 
         // POST: api/Employees
@@ -76,17 +36,10 @@ namespace EmployeeManagement.Controllers
         {
             await _sender.Send(new AddNewEmpCommand(employee));
             return StatusCode(200);
-            }
-
-            _context.Employees.Remove(employee);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
         }
 
-        private bool EmployeeExists(int id)
-        {
-            return _context.Employees.Any(e => e.EmployeeId == id);
-        }
+
     }
+
+        
 }

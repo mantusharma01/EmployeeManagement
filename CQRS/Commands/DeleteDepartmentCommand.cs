@@ -5,5 +5,5 @@ namespace EmployeeManagement.CQRS.Commands
 {
 
     public record DeleteDepartmentCommand(int Id) : IRequest;
-   
+
 }

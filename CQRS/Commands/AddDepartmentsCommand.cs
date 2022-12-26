@@ -3,7 +3,7 @@ using MediatR;
 
 namespace EmployeeManagement.CQRS.Commands
 {
-   
-        public record AddDepartmentsCommand(Department Department) : IRequest;
-    
+
+    public record AddDepartmentsCommand(Department Department) : IRequest;
+
 }

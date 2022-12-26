@@ -13,7 +13,7 @@ namespace EmployeeManagement.Models
         public string PhoneNumber { get; set; } = null!;
         public int LocationId { get; set; }
 
-        public virtual Department Department { get; set; } = null!;
-        public virtual Location Location { get; set; } = null!;
+        public virtual Department? Department { get; set; } 
+        public virtual Location? Location { get; set; } 
     }
 }

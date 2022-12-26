@@ -46,9 +46,9 @@ namespace EmployeeManagement.Models
             {
                 entity.ToTable("Employee");
 
-                entity.HasIndex(e => e.DepartmentId, "FK__Department");
+                entity.HasIndex(e => e.DepartmentId, "FK_Employee_Department");
 
-                entity.HasIndex(e => e.LocationId, "FK__Location");
+                entity.HasIndex(e => e.LocationId, "FK_Employee_Location");
 
                 entity.Property(e => e.EmployeeId).HasColumnType("int(11)");
 
@@ -68,13 +68,13 @@ namespace EmployeeManagement.Models
                     .WithMany(p => p.Employees)
                     .HasForeignKey(d => d.DepartmentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Department");
+                    .HasConstraintName("FK_Employee_Department");
 
                 entity.HasOne(d => d.Location)
                     .WithMany(p => p.Employees)
                     .HasForeignKey(d => d.LocationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Location");
+                    .HasConstraintName("FK_Employee_Location");
             });
 
             modelBuilder.Entity<Location>(entity =>

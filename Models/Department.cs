@@ -5,6 +5,8 @@ namespace EmployeeManagement.Models
 {
     public partial class Department
     {
+        internal readonly object DepartmentData;
+
         public Department()
         {
             Employees = new HashSet<Employee>();

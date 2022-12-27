@@ -2,5 +2,6 @@
 
 namespace EmployeeManagement.CQRS.Commands
 {
-    public record DeleteLocationCommand(int Id) : IRequest;
+    public record DeleteEmpCommand(int Id ): IRequest;
+  
 }

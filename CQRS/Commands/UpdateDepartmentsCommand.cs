@@ -3,5 +3,8 @@ using MediatR;
 
 namespace EmployeeManagement.CQRS.Commands
 {
-    public record UpdateLocationsCommand(int Id, Location Location) : IRequest;
+
+
+    public record UpdateDepartmentsCommand(int Id, Department Department) : IRequest;
+
 }

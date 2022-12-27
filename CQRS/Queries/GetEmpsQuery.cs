@@ -4,5 +4,6 @@ using MediatR;
 namespace EmployeeManagement.CQRS.Queries
 {
     public record GetEmpsQuery: IRequest<IEnumerable<Employee>>;
+
    
 }

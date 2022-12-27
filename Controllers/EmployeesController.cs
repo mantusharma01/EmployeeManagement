@@ -20,6 +20,12 @@ namespace EmployeeManagement.Controllers
             _sender = sender;
         }
 
+        [HttpGet] 
+        public async Task<ActionResult> GetEmployee()
+        {
+            var Employees = await _sender.Send(new GetEmpsQuery());
+            return Ok(Employees);
+        }
 
 
         [HttpGet("{id}")]
@@ -36,6 +42,22 @@ namespace EmployeeManagement.Controllers
             await _sender.Send(new AddNewEmpCommand(employee));
             return StatusCode(200);
         }
+
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateEmpDetails(int id ,Employee employee)
+        {
+            await _sender.Send(new UpdateEmpDetailsCommand(id, employee));
+            return StatusCode(200);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteEmployee(int id)
+        {
+            await _sender.Send(new DeleteEmpCommand(id));
+            return StatusCode(200);
+        }
+        
 
 
     }

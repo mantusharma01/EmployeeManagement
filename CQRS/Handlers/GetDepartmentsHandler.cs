@@ -7,9 +7,9 @@ namespace EmployeeManagement.CQRS.Handlers
 {
     public class GetDepartmentsHandler : IRequestHandler<GetDepartmentsQuery, IEnumerable<Department>>
     {
-        private readonly sql6585767Context _context;
+        private readonly EmployeeManagementDBContext _context;
 
-        public GetDepartmentsHandler(sql6585767Context context)
+        public GetDepartmentsHandler(EmployeeManagementDBContext context)
         {
             _context = context;
         }

@@ -6,9 +6,9 @@ namespace EmployeeManagement.CQRS.Handlers
 {
     public class UpdateLocationsHandler : IRequestHandler<UpdateLocationsCommand, Unit>
     {
-        private readonly sql6585767Context _context;
+        private readonly EmployeeManagementDBContext _context;
 
-        public UpdateLocationsHandler(sql6585767Context context)
+        public UpdateLocationsHandler(EmployeeManagementDBContext context)
         {
             _context = context;
         }

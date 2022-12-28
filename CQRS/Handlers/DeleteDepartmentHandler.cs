@@ -6,9 +6,9 @@ namespace EmployeeManagement.CQRS.Handlers
 {
     public class DeleteDepartmentHandler : IRequestHandler<DeleteDepartmentCommand, Unit>
     {
-        private readonly sql6585767Context _context;
+        private readonly EmployeeManagementDBContext _context;
 
-        public DeleteDepartmentHandler(sql6585767Context context)
+        public DeleteDepartmentHandler(EmployeeManagementDBContext context)
         {
             _context = context;
         }

@@ -6,9 +6,9 @@ namespace EmployeeManagement.CQRS.Handlers
 {
     public class GetEmpsByIdHandler : IRequestHandler<GetEmpsByIdQuery,Employee>
     {
-        private readonly sql6585767Context _context;
+        private readonly EmployeeManagementDBContext _context;
 
-        public GetEmpsByIdHandler(sql6585767Context context)
+        public GetEmpsByIdHandler(EmployeeManagementDBContext context)
         {
             _context = context;
         }

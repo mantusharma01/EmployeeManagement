@@ -24,6 +24,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("./components/DepartmentPost.vue"),
   },
   {
+    path: "/departmentupdate/:id",
+    name: "UpdateDepartment",
+    component: () => import("./components/UpdateDepartment.vue"),
+  },
+  {
     path: "/location",
     name: "Location",
     component: () => import("./components/Location.vue"),

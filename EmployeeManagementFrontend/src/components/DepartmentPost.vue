@@ -1,42 +1,35 @@
 <template>
-    <div>
-    <form @submit="PostData" method="post">
-    <input type="text" name = "DepartmentName" placeholder="DepartmentName" v-model="posts.DepartmentName"> 
-       <br><br>
+  <h1>Department ApI</h1>
+  <hr />
 
-       <button type="Create">Post</button>
-   
-    
-   </form>
-    </div>
+  <div class="form-group">
+    <input type="text" name="departmentName" v-model="departmentName" /> <br />
+  </div>
+
+  <div class="mt-3">
+    <button class="btn btn-primary" v-on:click="addDepartment()">Add Department</button>
+  </div>
 </template>
+
 <script>
+import axios from "axios";
+
 export default {
-    name:"DeaprtmentPost",
-    data(){
-        return{
-            posts:[
-                "DepartmentName",
-        ]
-        }
+  name: "DepartmentPost",
+  data() {
+    return {
+      departmentName: "",
+      isSuccess: false,
+    };
+  },
 
+  methods: {
+    async addDepartment() {
+      let result = axios.post("https://localhost:5001/api/departments", {
+        departmentName: this.departmentName,
+      });
+      console.warn(result);
     },
-    methods:{
-        PostData(e)
-        {
-            this.axios.post("https://localhost:5001/api/departments".this.posts)
-            .then((result)=>{
-                console.warn(result)
-
-            })
-            console.warn(this.posts)
-            e.preventDefault();
-            
-
-        }
-
-    }
-
-    }
-
+  },
+};
 </script>

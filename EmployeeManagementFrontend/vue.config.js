@@ -19,15 +19,19 @@ const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
 
 module.exports = {
     devServer: {
+        historyApiFallback: true,
+
         https: {
             key: fs.readFileSync(keyFilePath),
             cert: fs.readFileSync(certFilePath),
         },
         proxy: {
-            '^/': {
-                target: 'https://localhost:5001/'
+            '/api': {
+                target: 'https://localhost:5001',
+                secure: false
             }
         },
         port: 5002
     }
+   
 }

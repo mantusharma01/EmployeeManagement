@@ -18,21 +18,14 @@ const routes: Array<RouteRecordRaw> = [
     name: "Department",
     component: () => import("./components/Department.vue"),
   },
-  {
-    path: "/departmentpost",
-    name: "DepartmentPost",
-    component: () => import("./components/DepartmentPost.vue"),
-  },
-  {
-    path: "/departmentupdate/:id",
-    name: "UpdateDepartment",
-    component: () => import("./components/UpdateDepartment.vue"),
-  },
+
+
   {
     path: "/location",
     name: "Location",
     component: () => import("./components/Location.vue"),
   },
+
 ];
 
 const router = createRouter({

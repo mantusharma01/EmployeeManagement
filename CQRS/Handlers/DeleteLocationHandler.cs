@@ -4,7 +4,7 @@ using MediatR;
 
 namespace EmployeeManagement.CQRS.Handlers
 {
-    public class DeleteLocationHandler : IRequestHandler<DeleteDepartmentCommand, Unit>
+    public class DeleteLocationHandler : IRequestHandler<DeleteLocationCommand, Unit>
     {
         private readonly EmployeeManagementDBContext _context;
 
@@ -13,7 +13,7 @@ namespace EmployeeManagement.CQRS.Handlers
             _context = context;
         }
 
-        public async Task<Unit> Handle(DeleteDepartmentCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteLocationCommand request, CancellationToken cancellationToken)
         {
             var location = await _context.Locations.FindAsync(request.Id);
             _context.Remove(location);

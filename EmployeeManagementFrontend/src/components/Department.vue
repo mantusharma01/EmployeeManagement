@@ -1,7 +1,14 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div id="app">
+    <br />
+    <br />
+    <h1>DepartmentCreate</h1>
+    <br />
     <input type="text" v-model="departmentName" v-on:keyup.enter="PostApi()" />
+
+    <br />
+    <br />
 
     <table border="4px">
       <tr>

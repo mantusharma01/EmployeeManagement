@@ -8,15 +8,16 @@ const routes: Array<RouteRecordRaw> = [
     name: "Home",
     component: () => import("./components/Home.vue"),
   },
-  {
-    path: "/employee",
-    name: "Employee",
-    component: () => import("./components/Employee.vue"),
-  },
+ 
   {
     path: "/department",
     name: "Department",
     component: () => import("./components/Department.vue"),
+  },
+  {
+    path: "/employeecreate",
+    name: "EmployeeCreate",
+    component: () => import("./components/EmployeeCreate.vue"),
   },
 
 

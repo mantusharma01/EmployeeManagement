@@ -1,7 +1,12 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div id="app">
+    <br />
+    <br />
+    <h1>Location Create</h1>
     <input type="text" v-model="locationData" v-on:keyup.enter="PostApi()" />
+    <br />
+    <br />
 
     <table border="4px">
       <tr>

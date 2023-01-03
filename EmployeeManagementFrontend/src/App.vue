@@ -3,10 +3,11 @@
     <nav class="container navbar navbar-expand-lg navbar-light bg-light">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="navbar-nav">
-          <router-link to="/home" class="nav-item nav-link">Home</router-link>
-          <router-link to="/employee" class="nav-item nav-link">Employee</router-link>
-          <router-link to="/department" class="nav-link">Department</router-link>
-          <router-link to="/location" class="nav-link">Location</router-link>
+          <router-link to="/home" class="nav-item nav-link"> Home </router-link>
+
+          <router-link to="/department" class="nav-link"> Department </router-link>
+
+          <router-link to="/location" class="nav-link"> Location </router-link>
         </div>
       </div>
     </nav>
@@ -29,7 +30,7 @@ export default {
   background: whitesmoke;
 }
 #nav {
-  padding: 30px;
+  padding: 12px;
   text-align: center;
 }
 #nav a {
@@ -38,7 +39,7 @@ export default {
 }
 #nav a.router-link-exact-active {
   color: whitesmoke;
-  background: crimson;
-  border-radius: 0.5rem;
+  background: rgb(198, 96, 116);
+  border-radius: 0.8rem;
 }
 </style>

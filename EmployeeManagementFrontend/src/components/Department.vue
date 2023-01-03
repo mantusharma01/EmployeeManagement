@@ -1,23 +1,28 @@
+<!-- eslint-disable vue/no-parsing-error -->
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div id="app">
-    <h3 id="head">  Departments</h3>
-    <input type="text" v-model="departmentName" v-on:keyup.enter="PostApi()"/> <br>
-
+    <h3 id="head">Departments</h3>
     <form>
-        <div class="form-group">
-          <input type="text" class="form-control" v-model="departmentName" >
-          <small class="form-text text-muted"> Enter New Department name </small>
-          <button type="submit" class="btn btn-primary" v-on:click="PostApi( list.departmentName)">Save</button>
-        </div>  
+      <div class="form-group">
+        <input type="text" class="form-control" v-model="departmentName" />
+        <small class="form-text text-muted"> Enter New Department name </small>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          v-on:click="PostApi(lists.departmentName)"
+        >
+          Save
+        </button>
+      </div>
     </form>
 
-    <h3 id="head" > All Available Departments Names</h3>
+    <h3 id="head">All Available Departments Names</h3>
     <table class="table table-striped table-dark" id="tab">
       <tr>
-        <td id="th"  ><b>DepartmentId</b></td>
-        <td  id="th" ><b>DepartmentName</b></td>
-        <td id="th1" ><b>Action</b></td>
+        <td id="th"><b>DepartmentId</b></td>
+        <td id="th"><b>DepartmentName</b></td>
+        <td id="th1"><b>Action</b></td>
       </tr>
       <tr v-for="list of lists" v-bind:key="list.departmentId">
         <td>{{ list.departmentId }}</td>
@@ -124,23 +129,25 @@ table {
   border-collapse: collapse;
   width: 100%;
 }
- td {
+td {
   text-align: left;
   padding: 8px;
 }
 
-tr:nth-child(even){background-color: #04AA6D}
+tr:nth-child(even) {
+  background-color: #04aa6d;
+}
 
 #head {
-    font-family: Arial, Helvetica, sans-serif;
-    color:gray;
-    text-align: center;
-    padding: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: gray;
+  text-align: center;
+  padding: 30px;
 }
-#th{
+#th {
   color: black;
 }
-#th1{
+#th1 {
   text-align: center;
 }
 </style>

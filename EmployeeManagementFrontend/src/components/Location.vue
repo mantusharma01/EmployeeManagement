@@ -1,18 +1,22 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div id="app">
-      <h3 id="head"> Locations</h3>
-    <input type="text" v-model="locationData" v-on:keyup.enter="PostApi()"/> <br>
-
+    <h3 id="head">Locations</h3>
     <form>
-        <div class="form-group">
-          <input type="text" class="form-control" v-model="locationData" >
-          <small class="form-text text-muted"> Enter New Location name </small>
-        </div>
-        <button type="submit" class="btn btn-primary" v-on:click="PostApi( list.locationData)">Save</button>
+      <div class="form-group">
+        <input type="text" class="form-control" v-model="locationData" />
+        <small class="form-text text-muted"> Enter New Location name </small>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        v-on:click="PostApi(lists.locationData)"
+      >
+        Save
+      </button>
     </form>
 
-    <h3 id="head" > All Available Locations Names</h3>
+    <h3 id="head">All Available Locations Names</h3>
     <table>
       <tr>
         <td id="th"><b>LocationId</b></td>
@@ -106,23 +110,25 @@ table {
   border-collapse: collapse;
   width: 100%;
 }
- td {
+td {
   text-align: left;
   padding: 8px;
 }
 
-tr:nth-child(even){background-color: #04AA6D}
+tr:nth-child(even) {
+  background-color: #04aa6d;
+}
 
 #head {
-    font-family: Arial, Helvetica, sans-serif;
-    color:gray;
-    text-align: center;
-    padding: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: gray;
+  text-align: center;
+  padding: 30px;
 }
-#th{
+#th {
   color: black;
 }
-#th1{
+#th1 {
   text-align: center;
 }
 </style>

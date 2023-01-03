@@ -1,45 +1,40 @@
 <template>
-  <div id="nav">
-    <nav class="container navbar navbar-expand-lg navbar-light bg-light">
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="navbar-nav">
-          <router-link to="/home" class="nav-item nav-link"> Home </router-link>
 
-          <router-link to="/department" class="nav-link"> Department </router-link>
 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand">EmployeeManagement</a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+          <a><router-link to="/home" class="nav-item nav-link"> Home </router-link></a> 
+     
+      </li>
+      <li class="nav-item">
+             <router-link to="/department" class="nav-link"> Department </router-link>
+      </li>
+      <li class="nav-item"> 
           <router-link to="/location" class="nav-link"> Location </router-link>
-        </div>
-      </div>
-    </nav>
+      </li>
+    </ul>
   </div>
+</nav>
   <router-view />
 </template>
 
 <script>
-//import Department form './components/Department'
+
 export default {
   name: "App",
-  components: {
-    //  Department
+  components: { 
   },
 };
 </script>
-
 <style>
-#nav {
-  background: whitesmoke;
+#app {
+ 
+  margin-top: 60px;
 }
-#nav {
-  padding: 12px;
-  text-align: center;
-}
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-#nav a.router-link-exact-active {
-  color: whitesmoke;
-  background: rgb(198, 96, 116);
-  border-radius: 0.8rem;
-}
+
+@import'~bootstrap/dist/css/bootstrap.css'
 </style>
+

@@ -1,28 +1,30 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div id="app">
-    <br />
-    <br />
-    <h1>Location Create</h1>
-    <input type="text" v-model="locationData" v-on:keyup.enter="PostApi()" />
-    <br />
-    <br />
+      <h3 id="head"> Locations</h3>
+    <input type="text" v-model="locationData" v-on:keyup.enter="PostApi()"/> <br>
 
-    <table border="4px">
+    <form>
+        <div class="form-group">
+          <input type="text" class="form-control" v-model="locationData" >
+          <small class="form-text text-muted"> Enter New Location name </small>
+        </div>
+        <button type="submit" class="btn btn-primary" v-on:click="PostApi( list.locationData)">Save</button>
+    </form>
+
+    <h3 id="head" > All Available Locations Names</h3>
+    <table>
       <tr>
-        <td>LocationId</td>
-        <td>LocationData</td>
-        <td>Action</td>
+        <td id="th"><b>LocationId</b></td>
+        <td id="th"><b>LocationData</b></td>
+        <td id="th1"><b>Action</b></td>
       </tr>
-
       <tr v-for="list of lists" v-bind:key="list.locationId">
         <td>{{ list.locationId }}</td>
         <td><input type="text" v-model="list.locationData" /></td>
-
         <td>
           <button v-on:click="PutApi(list.locationId, list.locationData)">Update</button>
         </td>
-
         <td><button v-on:click="DeleteApi(list.locationId)">Delete</button></td>
       </tr>
     </table>
@@ -47,13 +49,10 @@ export default {
   methods: {
     async GetApi() {
       await axios
-
         .get(baseUrl)
-
         .then((resp) => {
           this.lists = resp.data;
         })
-
         .catch((err) => {
           console.log(err);
         });
@@ -61,17 +60,12 @@ export default {
 
     async PostApi() {
       await axios
-
         .post(baseUrl, { locationData: this.locationData })
-
         .then((resp) => {
           console.log(resp);
-
           this.locationData = "";
-
           this.GetApi();
         })
-
         .catch((err) => {
           console.log(err);
         });
@@ -79,15 +73,11 @@ export default {
 
     async DeleteApi(locationId) {
       await axios
-
         .delete(baseUrl + locationId)
-
         .then((resp) => {
           console.log(resp);
-
           this.GetApi();
         })
-
         .catch((err) => {
           console.log(err);
         });
@@ -95,15 +85,11 @@ export default {
 
     async PutApi(locationId, locationData) {
       await axios
-
         .put(baseUrl + locationId, { locationData: locationData })
-
         .then((resp) => {
           console.log(resp);
-
           this.GetApi();
         })
-
         .catch((err) => {
           console.log(err);
         });
@@ -115,3 +101,28 @@ export default {
   },
 };
 </script>
+<style scoped>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+ td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #04AA6D}
+
+#head {
+    font-family: Arial, Helvetica, sans-serif;
+    color:gray;
+    text-align: center;
+    padding: 30px;
+}
+#th{
+  color: black;
+}
+#th1{
+  text-align: center;
+}
+</style>

@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <form action="/action_page.php">
     <div>
@@ -36,13 +37,13 @@
     <div>
       <label for="department">Department</label>
       <select id="department" class="form-control" v-model="selectedDepartment">
-        <option v-for="department in departments">{{ department }}</option>
+        <!-- <option v-for="department in departments">{{ department }}</option> -->
       </select>
     </div>
     <div>
       <label for="location">Location</label>
       <select id="location" class="form-control" v-model="selectedLocation">
-        <option v-for="location in locations">{{ location }}</option>
+        <!-- <option v-for="location in locations">{{ location }}</option> -->
       </select>
     </div>
   </form>

@@ -1,15 +1,18 @@
 <template>
+  <h3 id="head" > All Registered Employee Names</h3>
+  <button><router-link to="/employeeCreate" class="nav-link">Add New Employee</router-link></button>
+
   <div id="app">
-    <table border="4px">
+    <table>
       <tr>
-        <td>EmployeeId</td>
-        <td>FirstName</td>
-        <td>LastName</td>
-        <td>Email</td>
-        <td>PhoneNumber</td>
-        <td>LocationId</td>
-        <td>DepartmentId</td>
-        <td>Action</td>
+        <td><b>EmployeeId</b></td>
+        <td><b>FirstName</b></td>
+        <td><b>LastName</b></td>
+        <td><b>Email</b></td>
+        <td><b>PhoneNumber</b></td>
+        <td><b>LocationId</b></td>
+        <td><b>DepartmentId</b></td>
+        <td><b>Action</b></td>
       </tr>
 
       <tr v-for="list of lists" v-bind:key="list.employeeId">
@@ -44,7 +47,6 @@
       </tr>
     </table>
   </div>
-  <button><router-link to="/employeeCreate" class="nav-link">Create</router-link></button>
 </template>
 
 <script>
@@ -138,4 +140,28 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+ td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #04AA6D}
+
+#head {
+    font-family: Arial, Helvetica, sans-serif;
+    color:gray;
+    text-align: center;
+    padding: 30px;
+}
+#th{
+  color: black;
+}
+#th1{
+  text-align: center;
+}
+</style>

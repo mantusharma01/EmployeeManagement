@@ -45,7 +45,7 @@ const baseUrl = "https://localhost:5001/api/departments/";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "Location",
+  name: "Department",
 
   data() {
     return {

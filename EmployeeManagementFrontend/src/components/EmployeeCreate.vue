@@ -5,19 +5,14 @@
       <label for="firstName">First Name</label>
       <input
         type="text"
-        id="firstname"
+        id="firstName"
         class="form-control"
         v-model="userData.firstName"
       />
     </div>
     <div>
       <label for="lastName">Last Name</label>
-      <input
-        type="text"
-        id="firstname"
-        class="form-control"
-        v-model="userData.lastName"
-      />
+      <input type="text" id="lastName" class="form-control" v-model="userData.lastName" />
     </div>
     <div>
       <label for="email"> Email </label>
@@ -36,48 +31,77 @@
     </div>
     <div>
       <label for="department">Department</label>
-      <select id="department" class="form-control" v-model="selectedDepartment">
-        <!-- <option v-for="department in departments">{{ department }}</option> -->
+      <select v-model="selected" class="form-control sl">
+        <option v-for="list of lists" v-bind:key="list.departmentId">
+          {{ list.departmentName }}
+        </option>
       </select>
     </div>
+
     <div>
       <label for="location">Location</label>
-      <select id="location" class="form-control" v-model="selectedLocation">
-        <!-- <option v-for="location in locations">{{ location }}</option> -->
+      <select v-model="selected" class="form-control sl">
+        <option v-for="list of listslocation" v-bind:key="list.loctionId">
+          {{ list.locationData }}
+        </option>
       </select>
     </div>
+
+    <button class="btn btn-primary" @click.prevent="submitted">Submit!</button>
   </form>
-
-  <br />
-
-  <button class="btn btn-primary" @click.prevent="submitted">Submit!</button>
 </template>
 <script>
-//import axios from "axios";
+import axios from "axios";
+
+const baseUrl = "https://localhost:5001/api/departments/";
 
 export default {
-  name: "EmployeeCreate",
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: "Department",
+
   data() {
     return {
-      userData: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        phoneNumber: "",
+      userData() {
+        "firstName", "lastName", "email", "phoneNumber";
       },
-      departments: ["High", "Medium", "Low"],
-      locations: ["High", "Medium", "Low"],
+      lists: ["departmentId", "departmentName"],
+      listslocation: ["locationId", "locationData"],
     };
   },
+
   methods: {
-    submitted(e) {
-      this.axios
-        .post("https://localhost:5001/api/employees", this.userData)
-        .then((result) => {
-          console.warn(result);
+    async GetApi() {
+      await axios
+
+        .get(baseUrl)
+
+        .then((resp) => {
+          this.lists = resp.data;
+        })
+
+        .catch((err) => {
+          console.log(err);
         });
-      e.preventDefault();
     },
+
+    async Getlocation() {
+      await axios
+
+        .get("https://localhost:5001/api/locations/")
+
+        .then((result) => {
+          this.listslocation = result.data;
+        })
+
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+
+  mounted() {
+    this.GetApi();
+    this.Getlocation();
   },
 };
 </script>

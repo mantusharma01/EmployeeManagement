@@ -25,6 +25,7 @@
         id="phoneNumber"
         class="form-control"
         v-model.number="phoneNumber"
+      
       />
     </div>
     <div>
@@ -44,7 +45,6 @@
         </option>
       </select>
     </div>
-
     <button class="btn btn-primary" type="submit" >Submit!</button>
   </form>
 </template>
@@ -72,6 +72,7 @@ export default {
   },
 
   methods: {
+
     async GetApi() {
       await axios
 
@@ -119,10 +120,7 @@ export default {
 
       }).catch((err)=>{
         console.error(err)
-      })
-
-      
-
+      }) 
     }
   },
 
@@ -133,3 +131,4 @@ export default {
   },
 };
 </script>
+

@@ -33,7 +33,8 @@
     "eslint-plugin-vue": "^8.0.3",
     "jquery": "^3.6.3",
     "popper.js": "^1.16.1",
-    "typescript": "~4.5.5"
+    "typescript": "~4.5.5",
+    "vuejs-validators": "^1.1.8"
   },
   "eslintConfig": {
     "root": true,

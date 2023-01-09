@@ -3,38 +3,37 @@
 <template>
   <div id="app">
     <h3 id="head">Departments</h3>
-    <form>
-      <div class="form-group">
-        <input type="text" class="form-control" v-model="departmentName" />
-        <small class="form-text text-muted"> Enter New Department name </small>
-        <button
+    <form class="form-inline" name="form1">
+        <div class="form-group mb-2" >
+        <input type="text" id="dept" name="deptName"  v-model="departmentName" maxlength="15"
+         placeholder="Enter Department name" oninvalid="this.setCustomValidity('Enter Department Name')"
+         oninput="this.setCustomValidity('')" required
+         v-on:click="validateDepartmentName(lists.departmentName)"
+         >
+        </div>
+        <button id="btnsubmit"
           type="submit"
-          class="btn btn-primary"
-          v-on:click="PostApi(lists.departmentName)"
-        >
+          class="btn btn-primary mb-2"
+          v-on:click="PostApi(lists.departmentName)">
           Save
         </button>
-      </div>
     </form>
-
     <h3 id="head">All Available Departments Names</h3>
-    <table class="table table-striped table-dark" id="tab">
-      <tr>
-        <td id="th"><b>DepartmentId</b></td>
-        <td id="th"><b>DepartmentName</b></td>
-        <td id="th1"><b>Action</b></td>
-      </tr>
+    <div class="container">
+      <table class="table table-striped table-dark" id="tab">
+        <tr>
+            <td id="th"><b>DepartmentName</b></td>
+            <td id="th1"><b>Action</b></td>
+        </tr>
       <tr v-for="list of lists" v-bind:key="list.departmentId">
-        <td>{{ list.departmentId }}</td>
         <td><input type="text" v-model="list.departmentName" /></td>
-        <td>
-          <button v-on:click="PutApi(list.departmentId, list.departmentName)">
-            Update
-          </button>
-        </td>
-        <td><button v-on:click="DeleteApi(list.departmentId)">Delete</button></td>
+        <td class="btn-group">
+          <button class="btn btn-info" v-on:click="PutApi(list.departmentId, list.departmentName)">Update</button>
+          <button class="btn btn-danger" v-on:click="DeleteApi(list.departmentId)">Delete</button></td>
       </tr>
     </table>
+    </div>
+
   </div>
 </template>
 
@@ -54,6 +53,16 @@ export default {
   },
 
   methods: {
+   validateDepartmentName(departmentName){
+      var letters = /^[A-Za-z]+$/;
+      if(departmentName.value.match(letters))
+      {
+      return true;
+      }  
+      else {
+        alert("Enter Name in proper Format");
+      }     
+   }, 
     async GetApi() {
       await axios
 
@@ -70,17 +79,12 @@ export default {
 
     async PostApi() {
       await axios
-
         .post(baseUrl, { departmentName: this.departmentName })
-
         .then((resp) => {
           console.log(resp);
-
           this.departmentName = "";
-
           this.GetApi();
         })
-
         .catch((err) => {
           console.log(err);
         });
@@ -88,7 +92,6 @@ export default {
 
     async DeleteApi(departmentId) {
       await axios
-
         .delete(baseUrl + departmentId)
 
         .then((resp) => {
@@ -104,15 +107,11 @@ export default {
 
     async PutApi(departmentId, departmentName) {
       await axios
-
         .put(baseUrl + departmentId, { departmentName: departmentName })
-
         .then((resp) => {
           console.log(resp);
-
           this.GetApi();
         })
-
         .catch((err) => {
           console.log(err);
         });
@@ -130,24 +129,38 @@ table {
   width: 100%;
 }
 td {
-  text-align: left;
-  padding: 8px;
+  text-align:center;
 }
 
 tr:nth-child(even) {
-  background-color: #04aa6d;
+  background-color: #515855;
 }
 
 #head {
   font-family: Arial, Helvetica, sans-serif;
   color: gray;
   text-align: center;
-  padding: 30px;
+  padding: 20px;
 }
 #th {
   color: black;
 }
-#th1 {
-  text-align: center;
+#th1{
+  text-align: left;
 }
+
+#btnsubmit{
+  margin: 10px;
+}
+#dept{
+  margin-left: 10px;
+  display: block;
+  outline: none;
+  border: 2px solid #eee;
+  font-size: 20px;
+  padding: 10px;
+  background: #eee;
+  border-radius: 6px;
+}
+
 </style>

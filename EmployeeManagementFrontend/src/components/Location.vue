@@ -2,14 +2,17 @@
 <template>
   <div id="app">
     <h3 id="head">Locations</h3>
-    <form>
-      <div class="form-group">
-        <input type="text" class="form-control" v-model="locationData" />
-        <small class="form-text text-muted"> Enter New Location name </small>
+    <form class="form-inline" name="form1">
+      <div class="form-group mb-2">
+        <input type="text" id="ltn" class="form-control" v-model="locationData"
+         maxlength="15"
+         placeholder="Enter Location name" oninvalid="this.setCustomValidity('Enter Department Name')"
+         oninput="this.setCustomValidity('')" required />
       </div>
       <button
         type="submit"
-        class="btn btn-primary"
+        class="btn btn-primary mb-2"
+        id="btnsubmit"
         v-on:click="PostApi(lists.locationData)"
       >
         Save
@@ -17,21 +20,21 @@
     </form>
 
     <h3 id="head">All Available Locations Names</h3>
-    <table>
+  <div class="container">
+      <table class="table table-striped table-dark" id="tab">
       <tr>
-        <td id="th"><b>LocationId</b></td>
         <td id="th"><b>LocationData</b></td>
         <td id="th1"><b>Action</b></td>
       </tr>
       <tr v-for="list of lists" v-bind:key="list.locationId">
-        <td>{{ list.locationId }}</td>
         <td><input type="text" v-model="list.locationData" /></td>
-        <td>
-          <button v-on:click="PutApi(list.locationId, list.locationData)">Update</button>
+        <td class="btn-group">
+          <button class="btn btn-info" v-on:click="PutApi(list.locationId, list.locationData)">Update</button>
+          <button class="btn btn-danger" v-on:click="DeleteApi(list.locationId)">Delete</button>
         </td>
-        <td><button v-on:click="DeleteApi(list.locationId)">Delete</button></td>
       </tr>
     </table>
+  </div>
   </div>
 </template>
 
@@ -111,24 +114,38 @@ table {
   width: 100%;
 }
 td {
-  text-align: left;
-  padding: 8px;
+  text-align:center;
 }
 
 tr:nth-child(even) {
-  background-color: #04aa6d;
+  background-color: #515855;
 }
 
 #head {
   font-family: Arial, Helvetica, sans-serif;
   color: gray;
   text-align: center;
-  padding: 30px;
+  padding: 20px;
 }
 #th {
   color: black;
 }
-#th1 {
-  text-align: center;
+#th1{
+  text-align: left;
 }
+
+#btnsubmit{
+  margin: 10px;
+}
+#ltn{
+  margin-left: 10px;
+  display: block;
+  outline: none;
+  border: 2px solid #eee;
+  font-size: 20px;
+  padding: 10px;
+  background: #eee;
+  border-radius: 6px;
+}
+
 </style>

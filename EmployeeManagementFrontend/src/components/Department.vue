@@ -20,7 +20,7 @@
     </form>
     <h3 id="head">All Available Departments Names</h3>
     <div class="container">
-      <table class="table table-striped table-dark" id="tab">
+      <table class="table table-striped table-dark">
         <tr>
             <td id="th"><b>DepartmentName</b></td>
             <td id="th1"><b>Action</b></td>
@@ -161,6 +161,9 @@ tr:nth-child(even) {
   padding: 10px;
   background: #eee;
   border-radius: 6px;
+}
+#app{
+  margin-top: 10px;
 }
 
 </style>

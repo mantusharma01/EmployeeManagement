@@ -12,20 +12,31 @@
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registration Info</h3>
             <form class="px-md-2" @submit="AddEmployee()">
               <div class="form-outline mb-4">
-                    <input type="text" id="firstName" class="form-control" v-model="firstName"/>
+                    <input type="text" id="firstName" class="form-control" v-model="firstName"
+                    oninvalid="this.setCustomValidity('Enter First Name')"
+                    oninput="this.setCustomValidity('')" required />
                     <label class="form-label" for="firstName">Empoloyee First Name</label>
               </div>
 
               <div class="form-outline mb-4">
-                    <input type="text" id="lastName" class="form-control" v-model="lastName"/>
+                    <input type="text" id="lastName" class="form-control" v-model="lastName"
+                    oninvalid="this.setCustomValidity('Enter First Name')"
+                    oninput="this.setCustomValidity('')" required
+                    />
                     <label class="form-label" for="lastName">Empoloyee Last Name</label>
               </div>
               <div class="form-outline mb-4">
-                    <input type="text" id="phoneNumber" class="form-control" v-model.number="phoneNumber"/>
+                    <input type="text" id="phoneNumber" class="form-control" v-model.number="phoneNumber"
+                    oninvalid="this.setCustomValidity('Enter First Name')"
+                    oninput="this.setCustomValidity('')" required
+                    />
                     <label class="form-label" for="lastName">Empoloyee Phone Number</label>
               </div>
               <div class="form-outline mb-4">
-                    <input type="text" id="email" class="form-control" v-model="email" />
+                    <input type="text" id="email" class="form-control" v-model="email"
+                    oninvalid="this.setCustomValidity('Enter First Name')"
+                    oninput="this.setCustomValidity('')" required
+                     />
                     <label class="form-label" for="lastName">Empoloyee Email Address</label>
               </div>
 
@@ -47,7 +58,16 @@
                     <label for="location">Location</label>
                 </div>
               </div>
-              <button type="submit" class="btn btn-success btn-lg mb-1">Submit</button>
+              <div class="row">
+                <button type="submit" class="btn btn-success btn-lg mb-1">Submit</button> &nbsp;&nbsp;
+                <router-link to="/" custom v-slot="{ navigate }">
+                    <button  class="btn btn-info btn-lg mb-1"
+                       @click="navigate"
+                        role="link">
+                        Back
+                    </button>
+                  </router-link>
+              </div>
             </form>
           </div>
         </div>
@@ -80,7 +100,9 @@ export default {
   },
 
   methods: {
-
+    RedirectToHome(){
+        this.$router.push({path: '/home'});
+     },
     async GetApi() {
       await axios
 

@@ -6,7 +6,7 @@
     <form class="form-inline" name="form1">
         <div class="form-group mb-2" >
         <input type="text" id="dept" name="deptName"  v-model="departmentName" maxlength="15"
-         placeholder="Enter Department name" oninvalid="this.setCustomValidity('Enter Department Name')"
+         placeholder="Enter Department Name" oninvalid="this.setCustomValidity('Enter Department Name')"
          oninput="this.setCustomValidity('')" required
          v-on:click="validateDepartmentName(lists.departmentName)"
          >

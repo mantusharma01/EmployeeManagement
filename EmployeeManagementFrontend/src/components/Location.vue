@@ -6,7 +6,7 @@
       <div class="form-group mb-2">
         <input type="text" id="ltn" class="form-control" v-model="locationData"
          maxlength="15"
-         placeholder="Enter Location name" oninvalid="this.setCustomValidity('Enter Department Name')"
+         placeholder="Enter Location Name" oninvalid="this.setCustomValidity('Enter Loaction Name')"
          oninput="this.setCustomValidity('')" required />
       </div>
       <button

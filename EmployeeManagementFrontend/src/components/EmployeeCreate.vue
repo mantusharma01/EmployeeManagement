@@ -11,33 +11,38 @@
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registration Info</h3>
             <form class="px-md-2" @submit="AddEmployee()">
+
               <div class="form-outline mb-4">
                     <input type="text" id="firstName" class="form-control" v-model="firstName"
-                    oninvalid="this.setCustomValidity('Enter First Name')"
-                    oninput="this.setCustomValidity('')" required />
-                    <label class="form-label" for="firstName">Empoloyee First Name</label>
+                      required  min="3"
+                      @keyup="validateFirstName" placeholder="Empoloyee First Name"/>
+                    <label for="firstName" class="invalid-warning" v-if="!isValidfstName">
+                        Invalid First Name!
+                    </label>
               </div>
 
               <div class="form-outline mb-4">
                     <input type="text" id="lastName" class="form-control" v-model="lastName"
-                    oninvalid="this.setCustomValidity('Enter First Name')"
-                    oninput="this.setCustomValidity('')" required
-                    />
-                    <label class="form-label" for="lastName">Empoloyee Last Name</label>
+                     required min="3" @keyup="validatelastName" placeholder="Empoloyee Last Name"/>
+                    <label for="lastName" class="invalid-warning" v-if="!isValidlstName">
+                        Invalid Last Name!
+                    </label>
               </div>
+
               <div class="form-outline mb-4">
                     <input type="text" id="phoneNumber" class="form-control" v-model.number="phoneNumber"
-                    oninvalid="this.setCustomValidity('Enter First Name')"
-                    oninput="this.setCustomValidity('')" required
-                    />
-                    <label class="form-label" for="lastName">Empoloyee Phone Number</label>
+                     required @keyup="validatePhoneNumber" maxlength="10"  placeholder="Empoloyee Phone Number"/>
+                    <label for="phoneNumber" class="invalid-warning" v-if="!isValidphnNum">
+                        Invalid Phone Number!
+                    </label>
               </div>
+
               <div class="form-outline mb-4">
                     <input type="text" id="email" class="form-control" v-model="email"
-                    oninvalid="this.setCustomValidity('Enter First Name')"
-                    oninput="this.setCustomValidity('')" required
-                     />
-                    <label class="form-label" for="lastName">Empoloyee Email Address</label>
+                    required @keyup="validateEmailAddress" placeholder="Empoloyee Email Address" />
+                    <label for="email" class="invalid-warning" v-if="!isValidEmail">
+                        Invalid Email Address!
+                    </label>
               </div>
 
               <div class="row">
@@ -59,7 +64,9 @@
                 </div>
               </div>
               <div class="row">
-                <button type="submit" class="btn btn-success btn-lg mb-1">Submit</button> &nbsp;&nbsp;
+                <button type="submit"  :disabled='!isValidfstName || !isValidlstName || !isValidEmail || !isValidphnNum' 
+                 class="btn btn-success btn-lg mb-1">Submit
+                </button> &nbsp;&nbsp;
                 <router-link to="/" custom v-slot="{ navigate }">
                     <button  class="btn btn-info btn-lg mb-1"
                        @click="navigate"
@@ -96,13 +103,46 @@ export default {
       userData:null,
       lists: ["departmentId", "departmentName"],
       listslocation: ["locationId", "locationData"],
+      isValidfstName:true,
+      isValidlstName:true,
+      isValidphnNum:true,
+      isValidEmail:true,
     };
   },
 
   methods: {
-    RedirectToHome(){
-        this.$router.push({path: '/home'});
-     },
+    validateFirstName() {
+      const validationRegex = /^[A-Za-z]+$/;
+      if (this.firstName.match(validationRegex)) {
+        this.isValidfstName = true;
+      } else {
+        this.isValidfstName = false;
+      }
+    },
+    validatelastName() {
+      const validationRegex = /^[A-Za-z]+$/;
+      if (this.lastName.match(validationRegex)) {
+        this.isValidlstName = true;
+      } else {
+        this.isValidlstName = false;
+      }
+    },
+    validatePhoneNumber() {
+      const validationRegex = /^\d{10}$/;
+      if (this.phoneNumber.match(validationRegex)) {
+        this.isValidphnNum = true;
+      } else {
+        this.isValidphnNum = false;
+      }
+    },
+     validateEmailAddress() {
+      const validationRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+      if (this.email.match(validationRegex)) {
+        this.isValidEmail = true;
+      } else {
+        this.isValidEmail = false;
+      }
+    },
     async GetApi() {
       await axios
 
@@ -161,4 +201,9 @@ export default {
   },
 };
 </script>
+<style>
+.invalid-warning {
+  color: red;
+}
+</style>
 

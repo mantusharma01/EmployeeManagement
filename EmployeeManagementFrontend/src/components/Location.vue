@@ -5,18 +5,20 @@
     <form class="form-inline" name="form1">
       <div class="form-group mb-2">
         <input type="text" id="ltn" class="form-control" v-model="locationData"
-         maxlength="15"
-         placeholder="Enter Location Name" oninvalid="this.setCustomValidity('Enter Loaction Name')"
-         oninput="this.setCustomValidity('')" required />
+         maxlength="15" @keyup="validateLocationName" placeholder="Enter Location Name" 
+         required />
       </div>
       <button
         type="submit"
         class="btn btn-primary mb-2"
         id="btnsubmit"
-        v-on:click="PostApi(lists.locationData)"
-      >
+        :disabled='!isValidltnName'
+        v-on:click="PostApi(lists.locationData)">
         Save
       </button>
+      <div for="ltn" class="invalid-warning" v-if="!isValidltnName">
+            Invalid Location Name!
+        </div>
     </form>
 
     <h3 id="head">All Available Locations Names</h3>
@@ -50,10 +52,21 @@ export default {
   data() {
     return {
       lists: ["locationId", "locationData"],
+      isValidltnName:true,
     };
   },
 
   methods: {
+
+    validateLocationName() {
+      const validationRegex = /^[A-Za-z-]+$/;
+      if (this.locationData.match(validationRegex)) {
+        this.isValidltnName = true;
+      } else {
+        this.isValidltnName = false;
+      }
+    }, 
+
     async GetApi() {
       await axios
         .get(baseUrl)
@@ -148,7 +161,11 @@ tr:nth-child(even) {
   border-radius: 6px;
 }
 #app{
-  margin-top: 10px;
+  margin: 0px;
+  background-color: rgb(182, 222, 222);
+}
+.invalid-warning {
+  color: red;
 }
 
 </style>

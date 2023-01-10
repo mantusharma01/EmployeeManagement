@@ -5,18 +5,21 @@
     <h3 id="head">Departments</h3>
     <form class="form-inline" name="form1">
         <div class="form-group mb-2" >
-        <input type="text" id="dept" name="deptName"  v-model="departmentName" maxlength="15"
-         placeholder="Enter Department Name" oninvalid="this.setCustomValidity('Enter Department Name')"
-         oninput="this.setCustomValidity('')" required
-         v-on:click="validateDepartmentName(lists.departmentName)"
+        <input type="text" id="dept" name="deptName"  v-model="departmentName" maxlength="15" 
+         placeholder="Enter Department Name" required 
+         @keyup="validateDepartmentName"
          >
         </div>
         <button id="btnsubmit"
           type="submit"
           class="btn btn-primary mb-2"
+          :disabled='!isValidDeptName'
           v-on:click="PostApi(lists.departmentName)">
           Save
         </button>
+        <label for="dept" class="invalid-warning" v-if="!isValidDeptName">
+            Invalid Department Name!
+        </label>
     </form>
     <h3 id="head">All Available Departments Names</h3>
     <div class="container">
@@ -49,20 +52,19 @@ export default {
   data() {
     return {
       lists: ["departmentId", "departmentName"],
+      isValidDeptName:true,
     };
   },
 
   methods: {
-   validateDepartmentName(departmentName){
-      var letters = /^[A-Za-z]+$/;
-      if(departmentName.value.match(letters))
-      {
-      return true;
-      }  
-      else {
-        alert("Enter Name in proper Format");
-      }     
-   }, 
+  validateDepartmentName() {
+      const validationRegex = /^[A-Za-z]+$/;
+      if (this.departmentName.match(validationRegex)) {
+        this.isValidDeptName = true;
+      } else {
+        this.isValidDeptName = false;
+      }
+    }, 
     async GetApi() {
       await axios
 
@@ -138,7 +140,7 @@ tr:nth-child(even) {
 
 #head {
   font-family: Arial, Helvetica, sans-serif;
-  color: gray;
+  color: grey;
   text-align: center;
   padding: 20px;
 }
@@ -163,7 +165,13 @@ tr:nth-child(even) {
   border-radius: 6px;
 }
 #app{
-  margin-top: 10px;
+  margin: 0px;
+  background-color: rgb(182, 222, 222);
+ 
+}
+
+.invalid-warning {
+  color: red;
 }
 
 </style>

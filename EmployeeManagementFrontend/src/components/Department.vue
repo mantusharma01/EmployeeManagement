@@ -31,7 +31,10 @@
       <tr v-for="list of lists" v-bind:key="list.departmentId">
         <td><input type="text" v-model="list.departmentName" /></td>
         <td class="btn-group">
-          <button class="btn btn-info" v-on:click="PutApi(list.departmentId, list.departmentName)">Update</button>
+          <button class="btn btn-info" @keyup="validateDepartmentName" 
+          :disabled='!isValidDeptName'
+          v-on:click="PutApi(list.departmentId, list.departmentName)">
+            Update</button>
           <button class="btn btn-danger" v-on:click="DeleteApi(list.departmentId)">Delete</button></td>
       </tr>
     </table>

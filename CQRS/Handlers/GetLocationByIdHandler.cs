@@ -7,9 +7,9 @@ namespace EmployeeManagement.CQRS.Handlers
 {
     public class GetLocationByIdHandler : IRequestHandler<GetLocationByIdQuery, Location>
     {
-        private readonly sql6585767Context _context;
+        private readonly EmployeeManagementDBContext _context;
 
-        public GetLocationByIdHandler(sql6585767Context context)
+        public GetLocationByIdHandler(EmployeeManagementDBContext context)
         {
             _context = context;
         }

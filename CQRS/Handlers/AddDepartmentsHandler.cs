@@ -7,9 +7,9 @@ namespace EmployeeManagement.CQRS.Handlers
 {
     public class AddDepartmentsHandler : IRequestHandler<AddDepartmentsCommand, Unit>
     {
-        private readonly sql6585767Context _context;
+        private readonly EmployeeManagementDBContext _context;
 
-        public AddDepartmentsHandler(sql6585767Context context)
+        public AddDepartmentsHandler(EmployeeManagementDBContext context)
         {
             _context = context;
         }

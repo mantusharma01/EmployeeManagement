@@ -7,9 +7,9 @@ namespace EmployeeManagement.CQRS.Handlers
 {
     public class GetLocationsHandler : IRequestHandler<GetLocationsQuery, IEnumerable<Location>>
     {
-        private readonly sql6585767Context _context;
+        private readonly EmployeeManagementDBContext _context;
 
-        public GetLocationsHandler(sql6585767Context context)
+        public GetLocationsHandler(EmployeeManagementDBContext context)
         {
             _context = context;
         }

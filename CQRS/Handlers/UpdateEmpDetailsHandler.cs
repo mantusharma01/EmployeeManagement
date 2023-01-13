@@ -6,9 +6,9 @@ namespace EmployeeManagement.CQRS.Handlers
 {
     public class UpdateEmpDetailsHandler : IRequestHandler<UpdateEmpDetailsCommand, Unit>
     {
-        private readonly sql6585767Context _context;
+        private readonly EmployeeManagementDBContext _context;
 
-        public UpdateEmpDetailsHandler(sql6585767Context context)
+        public UpdateEmpDetailsHandler(EmployeeManagementDBContext context)
         {
             _context = context;
         }

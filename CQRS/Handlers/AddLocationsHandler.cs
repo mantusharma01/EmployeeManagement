@@ -6,9 +6,9 @@ namespace EmployeeManagement.CQRS.Handlers
 {
     public class AddLocationsHandler :IRequestHandler<AddLocationsCommand,Unit>
     {
-        private readonly sql6585767Context _context;
+        private readonly EmployeeManagementDBContext _context;
 
-        public AddLocationsHandler(sql6585767Context context)
+        public AddLocationsHandler(EmployeeManagementDBContext context)
         {
             _context = context;
         }
